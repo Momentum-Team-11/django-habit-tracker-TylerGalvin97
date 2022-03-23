@@ -1,2 +1,2 @@
-web: gunicorn <project_dir>.wsgi
+web: gunicorn habit_tracker.wsgi
 release: python manage.py migrate
