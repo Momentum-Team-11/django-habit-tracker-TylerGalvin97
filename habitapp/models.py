@@ -18,7 +18,7 @@ class Habit(models.Model):
     user = models.ForeignKey(User, related_name="habits", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.goal
 
 class Tracker(models.Model):
     habit = models.ForeignKey(User, related_name="trackers", on_delete=models.CASCADE)
