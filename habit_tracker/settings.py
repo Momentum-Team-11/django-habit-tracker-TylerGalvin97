@@ -64,7 +64,7 @@ ROOT_URLCONF = 'habit_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,6 +136,8 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "auth_login"
+
+AUTH_USER_MODEL = "habitapp.User"
 
 
 django_on_heroku.settings(locals())
