@@ -21,10 +21,10 @@ class Habit(models.Model):
         return self.goal
 
 class Tracker(models.Model):
-    habit = models.ForeignKey(User, related_name="trackers", on_delete=models.CASCADE)
+    habit = models.ForeignKey(User, related_name="trackers", on_delete=models.CASCADE, null=True, blank=True)
     daily_record = models.CharField(max_length=200)
     goal_complete = models.BooleanField(default=False)
     date_complete = models.DateField(auto_now_add=datetime.now)
 
     def __str__(self):
-        return self.habit
+        return str(self.daily_record)

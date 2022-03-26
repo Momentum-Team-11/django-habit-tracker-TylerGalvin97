@@ -15,7 +15,7 @@ def habit_list(request):
     habits = Habit.objects.all()
     return render(request, "habit_list.html", {"habits": habits})
 
-def habit_details(request, ):
+def habit_details(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     result = Tracker.objects.filter(habit=habit.id)
     return render (request, "habit_details.html", {'habit': habit, 'result' : result})
@@ -66,9 +66,9 @@ def add_tracker(request, pk):
 def edit_tracker(request, pk):
     tracker = get_object_or_404(Tracker, pk=pk)
     if request.method == 'GET':
-        form = TrackerForm(instance=tracker)
+        form = HabitForm(instance=tracker)
     else:
-        form = TrackerForm(data=request.POST, instance=tracker)
+        form = HabitForm(data=request.POST, instance=tracker)
         if form.is_valid():
             form.save()
             return redirect(to='habit_list')
