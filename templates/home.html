@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container box ">
+    <h1 class="f2 lh-copy tc"> I see you want to make some habits!</h1>
+    <h1 class="f2 lh-copy tc">Log in or Register to begin making some habits🥚🥕</h1>
+        <div class="f6 lh-copy tc">
+            <button class="button is-primary"><a href="{% url 'registration_register' %}">Register</a></button>
+            <button class="button is-primary"><a href="{% url 'auth_login' %} ">Log In</a></button>
+        </div>
+</div>
+{% endblock content %}  

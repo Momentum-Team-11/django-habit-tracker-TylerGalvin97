@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <form action="{% url 'add_tracker' pk=habit.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    
+        <div>
+            <label for="{{field.id_for_label}}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+    
+        <button type="submit">Add your tracker</button>
+    </form>
+</div>
+<!-- needs to auto populate the habit because you are clicking the link on the specific habit card -->
+{% endblock %}

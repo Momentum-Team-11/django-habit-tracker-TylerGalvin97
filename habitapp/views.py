@@ -17,7 +17,8 @@ def habit_list(request):
 
 def habit_details(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
-    result = Tracker.objects.filter(habit=habit.id)
+    result = Tracker.objects.all().filter(habit=habit.id)
+    form=HabitForm()
     return render (request, "habit_details.html", {'habit': habit, 'result' : result})
 
     # add edit delete habits
