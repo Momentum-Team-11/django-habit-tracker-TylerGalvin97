@@ -15,13 +15,13 @@ class User(AbstractUser):
 class Habit(models.Model):
     goal = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    user = models.ForeignKey(User, related_name="habits", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="habits", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.goal
 
 class Tracker(models.Model):
-    habit = models.ForeignKey(User, related_name="trackers", on_delete=models.CASCADE, null=True, blank=True)
+    habit = models.ForeignKey(Habit, related_name="trackers", on_delete=models.CASCADE, null=True, blank=True)
     daily_record = models.CharField(max_length=200)
     goal_complete = models.BooleanField(default=False)
     date_complete = models.DateField(auto_now_add=datetime.now)

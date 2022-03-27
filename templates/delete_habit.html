@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <form action="{% url 'delete_habit' pk=habit.pk %}" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete your habit "<span class="b">{{ habit.goal }}</span>?"</p>
+    <div>
+      <button class="f6 link dim br3 ba bw1 ph3 pv2 b blue" type="submit">Delete Habit</button><br />
+      <a href="{% url 'habit_list' %}" class="mt3 dib f6 link dim br3 ba bw1 ph3 pv2 b blue">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
