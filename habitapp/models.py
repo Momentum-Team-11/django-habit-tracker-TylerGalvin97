@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils import timezone
-from django.utils.text import slugify
-from datetime import datetime
 from django.db.models import UniqueConstraint
+from datetime import datetime
 
 class User(AbstractUser):
     def __repr__(self):
@@ -30,8 +28,9 @@ class Tracker(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['habit', 'date'], name='one_record_per_day')
+            models.UniqueConstraint(fields=['habit', 'date_complete'], name='one_record_per_day')
         ]
 
     def __str__(self):
         return str(self.daily_record)
+    
