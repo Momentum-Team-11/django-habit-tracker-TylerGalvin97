@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="box ba b--green">
+    <div class="tc ">
+        <a href="{% url 'edit_habit' pk=habit.pk%}">Edit this habit ||| </a>
+        <a href="{% url 'habit_list' %}">Back to my habits ||| </a>
+        <a href="{% url 'add_habit' %}">Make a new habit</a>
+</div>
+        <h1 class=" title is-1">This Is Your "{{ habit.goal }}" Habit Details</h1>
+
+        <div class="tc">
+{% if habit %}
+            <h2 class="underline f4"">How will You accomplish this goal?</h2>
+                <p>{{ habit.description}}</p>
+                <br>
+            <h3>I've been achieving my "{{ habit.goal }}" habit since {{ tracker.date }}.</h3>
+{% endif %}
+        </div>
+        <table>
+            <td>date</td>
+            <td>habit</td>
+            <td>daily_record</td>
+        {% for tracker in trackers %}
+            <tr>
+                <td>{{ tracker.date }}</td>
+                <td>{{ tracker.habit }}</td>
+                <td>{{ tracker.daily_record }}</td>
+                <td><a href="{% url 'edit_record' pk=tracker.pk %}">update your daily record</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+</div>
+{% endblock %} 

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title%}Edit Habit{% endblock title%}
+
+{% block content %}
+<h1 class="title b">Edit Habit</h1>
+<div class="form black">
+  <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="">
+      <label for="{{field.id_for_label}}" class="f6 b db ">{{ field.label}}</label>
+      {{ field }}
+    </div>
+    {% endfor %}
+    <div class="submit is-primary">
+      <button type="submit" class="link dim br3 ba bw1 ph3 pv2 b blue">Update Habit</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+
