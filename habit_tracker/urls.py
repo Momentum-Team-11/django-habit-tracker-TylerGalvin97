@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from habitapp import views as habitapp_views
+from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,9 @@ urlpatterns = [
     path("habit/<int:pk>/add/", habitapp_views.add_tracker, name="add_tracker"),
     path("habit/<int:pk>/edit/", habitapp_views.edit_tracker, name="edit_tracker"),
     path("habit/<int:pk>/delete/", habitapp_views.delete_tracker, name="delete_tracker"),
+    # api urls
+    path('api-auth/', include('rest_framework.urls')),
+    path("api/habit", api_views.HabitListView.as_view(), name='api_habit_list'),
+    path('api/habit/<int:pk>', api_views.HabitDetailsView.as_view(), name='api_habit_details'),
+    path('api/habits/trackers', api_views.TrackerListView.as_view(), name='api_tracker_list'),
 ]

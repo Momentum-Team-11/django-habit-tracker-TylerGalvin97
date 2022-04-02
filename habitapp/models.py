@@ -15,6 +15,7 @@ class Habit(models.Model):
     goal = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
     user = models.ForeignKey(User, related_name="habits", on_delete=models.CASCADE, null=True, blank=True)
+    start = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.goal
@@ -23,12 +24,11 @@ class Tracker(models.Model):
     habit = models.ForeignKey(Habit, related_name="trackers", on_delete=models.CASCADE, null=True, blank=True)
     daily_record = models.CharField(max_length=200)
     goal_complete = models.BooleanField(default=False)
-    date = models.DateField(auto_now_add=True)
-    date_complete = models.DateField(auto_now_add=datetime.now)
+    date_created = models.DateField(auto_now_add=True)
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['habit', 'date_complete'], name='one_record_per_day')
+            models.UniqueConstraint(fields=['habit', 'date_created'], name='one_record_per_day')
         ]
 
     def __str__(self):
