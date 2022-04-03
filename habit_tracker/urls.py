@@ -38,5 +38,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path("api/habit", api_views.HabitListView.as_view(), name='api_habit_list'),
     path('api/habit/<int:pk>', api_views.HabitDetailsView.as_view(), name='api_habit_details'),
-    path('api/habits/trackers', api_views.TrackerListView.as_view(), name='api_tracker_list'),
+    path('api/habit/trackers', api_views.TrackerListView.as_view(), name='api_tracker_list'),
 ]
